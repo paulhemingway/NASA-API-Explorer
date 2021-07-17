@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+    Name: Paul Hemingway
+    Pawprint: pshfmg
+    Date: 4/5/2021
+    Challenge: AJAX S21
+-->
+<!--
+    References:
+        1) https://loading.io/css/ 
+            used this for the animated loading icon
+        2) https://fonts.google.com/specimen/Trispace?query=space
+        3) https://fonts.google.com/specimen/Nunito?query=nunito
+        4) https://www.dafont.com/earth-orbiter.font
+            fonts
+        5) https://www.google.com/search?q=slideshow+gallery+w3+schools&oq=slide&aqs=chrome.0.69i59j0i433j69i57j0l2j46i433j0i433l2j0j0i433.872j0j7&sourceid=chrome&ie=UTF-8
+            slideshow
+        6) https://www.w3schools.com/howto/howto_css_modals.asp  
+-->
+
+<html lang="en">
+<head>
+
+    <title>NASA API</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="pshfmgAJAX-S21.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nunito:wght@300;400;600;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="pshfmgAJAX-S21.js"></script>
+    
+    
+</head>
+<body onload="manifestQuery()">
+    <!-- <a id="projects" href="../pshfmgProjectsS21.html">back to projects</a> -->
+    <h1 id="mainTitle">NASA EXPLORER</h1>
+    <div id="alertModal" class="modal">
+        <div class="modalContent">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalHeader">NASA API ERROR</h3>
+            <p id="modalText"></p>
+            <h4 id="modalFooter">Click the screen or the x to close</h4>
+        </div>
+    </div>
+    
+    <div id="inputDiv">    
+        <div id="roverInput" class="inputColumn">        
+            <h4 class="inputHeader">Mars Rover Photos</h4>
+            <label for="solInput">Sol</label>
+            <input id="solInput" type="number" name="sol" min="0" placeholder="Sol" onchange="cameraOptions()">
+            <label for="cameraSelect">Camera</label>
+            <select id="cameraSelect" name="camera" onchange="fetch()">
+                <option value="">Please Input a Valid Sol</option>
+            </select>
+        </div>
+        <div id="apodInput" class="inputColumn">
+            <h4 class="inputHeader">Astronomy Photo of the Day</h4>
+            <label for="dateInput">Date</label>
+            <input id="dateInput" type="date" name="date" onchange="getApod('')">
+        </div>
+    </div>
+    <div id="contentWrapper">
+     
+        <div id="left" class="column">         
+        
+            <h3 id="contentTitle">Astronomy Photo of the Day</h3>
+            <!-- https://loading.io/css/ --> 
+            <div id="loader">    
+                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            <div id="apodBox"></div>
+            <div id="contentBox">
+                <span id="photoCount"></span>
+                <span id="oppy">Oppy</span>
+                <div id="imageHolder"></div><br>
+                <div id="imageLabel">
+                    <p id="solLabel"></p>
+                    <p id="statusLabel"></p>
+                </div>
+            </div>
+            
+            <a id="prev" class="prev">&#10094;</a>
+            <a id="next" class="next">&#10095;</a>
+        </div>
+
+        <div id="right" class="column">
+            <div class="content"><span id="title"></span></div>
+            <div class="content"><span id="roverInfo"></span></div>
+            <div class="content"><span id="date"></span></div>
+            <div class="content"><span id="description"></span></div>
+        </div>
+    </div>
+</body>    
+
+</html>
